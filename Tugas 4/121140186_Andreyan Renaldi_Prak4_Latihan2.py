@@ -32,6 +32,7 @@ class Robot:
                 self.damage = 5500
             elif self.c == 4:
                 self.damage *= 2
+                print("Lecalicus menambah darah sebanyak 7000 HP")
                 self.health += 7000
                 self.c = 0
 
@@ -54,6 +55,7 @@ class Lecalicus(Robot):
         super().__init__( nama, health, damage)
 
 def match(robot1, robot2):
+    sum = 1
     while True:
         if robot1.health <= 0:
             print(f"Robot lawan {robot2.nama} menang")
@@ -62,10 +64,8 @@ def match(robot1, robot2):
 
         if robot1.health <= 0 or robot2.health <= 0:
             break
-        
-        robot1.jumlah_turn += 1
 
-        print(f"Turn saat ini : {robot1.jumlah_turn}")
+        print(f"Turn saat ini : {sum}")
         print(f"Robotmu ({robot1.nama} - {robot1.health} HP), robot lawan ({robot2.nama} - {robot2.health} HP)")
 
         print("Selanjutnya, pilih 1 untuk batu, 2 untuk kertas, dan 3 untuk gunting")
@@ -75,38 +75,47 @@ def match(robot1, robot2):
         if(opsi1 == 1):
             if(opsi2 == 1):
                 print("Kedua robot seimbang")
+                sum += 1
             elif(opsi2 == 2):
                 R2.lakukan_aksi(R2.nama)
                 print(f"Robot lawan {R2.nama} menyerang sebanyak {R2.damage}")
                 R1.terima_aksi(R1.nama, R2.damage)
+                sum += 1
             else:
                 R1.lakukan_aksi(R1.nama)
                 print(f"Robotmu {R1.nama} menyerang sebanyak {R1.damage}")
                 R2.terima_aksi(R2.nama, R1.damage)
+                sum += 1
             print("\n")
         elif(opsi1 == 2):
             if(opsi2 == 1):
                 R1.lakukan_aksi(R1.nama)
                 print(f"Robotmu {R1.nama} menyerang sebanyak {R1.damage}")
                 R2.terima_aksi(R2.nama, R1.damage)
+                sum += 1
             elif(opsi2 == 2):
                 print("Kedua robot seimbang")
+                sum += 1
             else:
                 R2.lakukan_aksi(R2.nama)
                 print(f"Robot lawan {R2.nama} menyerang sebanyak {R2.damage}")
                 R1.terima_aksi(R1.nama, R2.damage)
+                sum += 1
             print("\n")
         elif(opsi1 == 3):
-            if(opsi2 == 3):
+            if(opsi2 == 1):
                 R2.lakukan_aksi(R2.nama)
                 print(f"Robot lawan {R2.nama} menyerang sebanyak {R2.damage}")
                 R1.terima_aksi(R1.nama, R2.damage)
+                sum += 1
             elif(opsi2 == 2):
                 R1.lakukan_aksi(R1.nama)
                 print(f"Robotmu {R1.nama} menyerang sebanyak {R1.damage}")
                 R2.terima_aksi(R2.nama, R1.damage)
+                sum += 1
             else:
                 print("Kedua robot seimbang")
+                sum += 1
             print("\n")
 
 
